@@ -141,11 +141,11 @@ body::before {
 }
 
 .hero-title {
-    font-family: "Playfair Display", "Roboto Slab", "Merriweather", "Georgia", serif;
-    font-size: clamp(40px, 7vw, 64px);
+    font-family: "Ultra", "Alfa Slab One", "Bowlby One", "Lilita One", serif;
+    font-size: clamp(38px, 6.5vw, 60px);
     font-weight: 900;
     font-style: normal;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.01em;
     text-transform: uppercase;
     background: linear-gradient(135deg, #ffffff 0%, #999999 50%, #ffffff 100%);
     -webkit-background-clip: text;
