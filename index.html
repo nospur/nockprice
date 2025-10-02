@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nock Price</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Hero -->
+        <header class="hero">
+            <h1 class="hero-title">Nock Price</h1>
+        </header>
+
+        <!-- Market Cap Selector -->
+        <div class="selector-section">
+            <label for="marketCapSelector" class="selector-label">Compare with</label>
+            <select id="marketCapSelector" class="market-cap-selector">
+                <option value="bitcoin">Bitcoin's Market Cap</option>
+                <option value="ethereum">Ethereum's Market Cap</option>
+                <option value="solana">Solana's Market Cap</option>
+                <option value="polkadot">Polkadot's Market Cap</option>
+                <option value="litecoin">Litecoin's Market Cap</option>
+                <option value="gold">Gold's Market Cap</option>
+            </select>
+        </div>
+
+        <!-- Main Comparison Section -->
+        <div class="comparison-section">
+            <!-- Current Price Section -->
+            <div class="price-column current-column">
+                <div class="column-header">
+                    <span class="column-title">Current</span>
+                    <span class="column-subtitle">Reality</span>
+                </div>
+
+                <div class="price-display">
+                    <span class="price-main" id="currentPriceDisplay">—</span>
+                    <span class="price-label">per NOCK</span>
+                </div>
+
+                <div class="portfolio-value-box" id="currentPortfolioBox">
+                    <span class="portfolio-label">Your NOCK Value</span>
+                    <span class="portfolio-amount" id="currentPortfolioValue">—</span>
+                </div>
+            </div>
+
+            <!-- VS Divider -->
+            <div class="vs-divider">
+                <span class="vs-text">VS</span>
+            </div>
+
+            <!-- Hypothetical Price Section -->
+            <div class="price-column future-column">
+                <div class="column-header">
+                    <span class="column-title">If NOCK had <span id="selectedAssetName">Bitcoin's</span></span>
+                    <span class="column-subtitle" id="selectedMarketCap">—</span>
+                </div>
+
+                <div class="price-display">
+                    <span class="price-main" id="hypotheticalPrice">—</span>
+                    <span class="price-label">per NOCK</span>
+                </div>
+
+                <div class="portfolio-value-box" id="futurePortfolioBox">
+                    <span class="portfolio-label">Your NOCK Would Be</span>
+                    <span class="portfolio-amount future" id="futurePortfolioValue">—</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Multiplier Badge -->
+        <div class="multiplier-section">
+            <span class="multiplier-badge" id="priceMultiplier">—</span>
+        </div>
+
+        <!-- Portfolio Input -->
+        <div class="input-section">
+            <input type="number"
+                   id="userNocks"
+                   class="nock-input"
+                   placeholder="Enter your NOCK amount"
+                   step="any"
+                   min="0">
+            <label for="userNocks" class="input-hint">How much NOCK do you hold?</label>
+        </div>
+
+        <!-- NOCK Stats -->
+        <div class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-label">Market Cap</span>
+                    <span class="stat-value" id="currentMarketCap">—</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Circulating Supply</span>
+                    <span class="stat-value" id="circulatingSupply">—</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Max Supply</span>
+                    <span class="stat-value" id="maxSupply">—</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Last Updated</span>
+                    <span class="stat-value" id="updateTime">—</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Data from CoinGecko API</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
