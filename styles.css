@@ -141,7 +141,7 @@ body::before {
 }
 
 .hero-title {
-    font-family: "Noto Serif", "Source Serif 4", "Lora", "Georgia", serif;
+    font-family: "Georgia", "Times New Roman", serif;
     font-size: clamp(44px, 7.5vw, 72px);
     font-weight: 900;
     font-style: normal;
@@ -151,6 +151,7 @@ body::before {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Market Cap Selector */
