@@ -137,7 +137,7 @@ body::before {
 /* Hero */
 .hero {
     text-align: center;
-    padding: 45px 0 45px; /* Equal spacing above and below title */
+    padding: 20px 0 20px;
 }
 
 .hero-title {
