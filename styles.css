@@ -141,11 +141,11 @@ body::before {
 }
 
 .hero-title {
-    font-family: "Bitter", "Zilla Slab", "Arvo", "Rockwell", "Georgia", serif;
-    font-size: clamp(42px, 7vw, 68px);
+    font-family: "Noto Serif", "Source Serif 4", "Lora", "Georgia", serif;
+    font-size: clamp(44px, 7.5vw, 72px);
     font-weight: 900;
     font-style: normal;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
     text-transform: uppercase;
     background: linear-gradient(135deg, #ffffff 0%, #999999 50%, #ffffff 100%);
     -webkit-background-clip: text;
