@@ -5,11 +5,11 @@
     --text-primary: #ffffff;
     --text-muted: #666666;
     --text-dim: #404040;
-    --accent-neon: #00ff88;
-    --accent-purple: #8b5cf6;
-    --accent-pink: #ec4899;
-    --accent-blue: #3b82f6;
-    --accent-yellow: #fbbf24;
+    --accent-primary: #ffffff;
+    --accent-secondary: #999999;
+    --accent-tertiary: #666666;
+    --positive: #ffffff;
+    --negative: #666666;
     --border: rgba(255, 255, 255, 0.08);
     --border-hover: rgba(255, 255, 255, 0.15);
 }
@@ -30,7 +30,7 @@ body {
     padding-top: 36px; /* Space for ticker bar */
 }
 
-/* Background gradient orbs */
+/* Background gradient orbs - black and white */
 body::before {
     content: '';
     position: fixed;
@@ -38,9 +38,9 @@ body::before {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(0, 255, 136, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
+    background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
     animation: float 30s ease-in-out infinite;
     pointer-events: none;
     z-index: 0;
@@ -117,13 +117,13 @@ body::before {
 }
 
 .ticker-change.positive {
-    color: var(--accent-neon);
-    background: rgba(0, 255, 136, 0.1);
+    color: var(--positive);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .ticker-change.negative {
-    color: #ff4444;
-    background: rgba(255, 68, 68, 0.1);
+    color: var(--negative);
+    background: rgba(0, 0, 0, 0.2);
 }
 
 .ticker-separator {
@@ -143,7 +143,7 @@ body::before {
     font-size: clamp(32px, 5vw, 48px);
     font-weight: 900;
     letter-spacing: -0.03em;
-    background: linear-gradient(135deg, var(--accent-neon) 0%, var(--accent-purple) 50%, var(--accent-pink) 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #999999 50%, #ffffff 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -176,13 +176,13 @@ body::before {
 }
 
 .market-cap-selector:hover {
-    border-color: var(--accent-neon);
-    background: rgba(0, 255, 136, 0.03);
+    border-color: var(--accent-primary);
+    background: rgba(255, 255, 255, 0.03);
 }
 
 .market-cap-selector:focus {
     outline: none;
-    border-color: var(--accent-neon);
+    border-color: var(--accent-primary);
 }
 
 /* Comparison Section */
@@ -212,8 +212,8 @@ body::before {
 }
 
 .future-column {
-    background: linear-gradient(135deg, rgba(0, 255, 136, 0.02) 0%, var(--bg-card) 100%);
-    border-color: rgba(0, 255, 136, 0.15);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, var(--bg-card) 100%);
+    border-color: rgba(255, 255, 255, 0.15);
 }
 
 .column-header {
@@ -236,7 +236,7 @@ body::before {
 }
 
 #selectedAssetName {
-    color: var(--accent-neon);
+    color: var(--accent-primary);
 }
 
 .column-subtitle {
@@ -265,7 +265,7 @@ body::before {
 }
 
 .future-column .price-main {
-    background: linear-gradient(135deg, var(--accent-neon) 0%, var(--accent-purple) 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -330,7 +330,7 @@ body::before {
 }
 
 .future-column .portfolio-amount {
-    color: var(--accent-neon);
+    color: var(--accent-primary);
 }
 
 /* Multiplier Section */
@@ -342,9 +342,9 @@ body::before {
 .multiplier-badge {
     display: inline-block;
     padding: 6px 16px;
-    background: rgba(0, 255, 136, 0.1);
-    color: var(--accent-neon);
-    border: 1px solid rgba(0, 255, 136, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--accent-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
     font-size: 12px;
     font-weight: 600;
@@ -380,8 +380,8 @@ body::before {
 
 .nock-input:focus {
     outline: none;
-    border-color: var(--accent-neon);
-    background: rgba(0, 255, 136, 0.02);
+    border-color: var(--accent-primary);
+    background: rgba(255, 255, 255, 0.02);
 }
 
 .input-hint {
