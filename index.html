@@ -3,7 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nock Price</title>
+    <title>Nock Price - NOCKCHAIN Live Price, Market Cap & Calculator</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Track NOCKCHAIN (NOCK) live price, market cap, and calculate potential value at Bitcoin, Ethereum, and other crypto market caps. Real-time NOCK price updates and portfolio calculator.">
+    <meta name="keywords" content="nock price, nockchain, nock crypto, nockchain price, nock market cap, nock calculator, nock value, nockchain cryptocurrency, NOCK USD, nock token price">
+    <meta name="author" content="Nock Price">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://nockprice.com">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nockprice.com">
+    <meta property="og:title" content="Nock Price - NOCKCHAIN Live Price & Market Cap Calculator">
+    <meta property="og:description" content="Track NOCKCHAIN (NOCK) live price and calculate potential value at different market caps. Real-time updates from CoinGecko.">
+    <meta property="og:site_name" content="Nock Price">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Nock Price - NOCKCHAIN Live Price & Calculator">
+    <meta name="twitter:description" content="Track NOCK price and calculate potential value at Bitcoin, Ethereum market caps">
     <!-- Serif Black font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,6 +60,8 @@
         <!-- Hero -->
         <header class="hero">
             <h1 class="hero-title">Nock Price</h1>
+        <meta itemprop="name" content="NOCKCHAIN">
+        <meta itemprop="priceCurrency" content="USD">
         </header>
 
         <!-- Market Cap Selector -->
@@ -124,5 +145,27 @@
     </div>
 
     <script src="script.js"></script>
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Nock Price",
+        "url": "https://nockprice.com",
+        "description": "NOCKCHAIN price tracker and market cap calculator",
+        "applicationCategory": "FinanceApplication",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "about": {
+            "@type": "Thing",
+            "name": "NOCKCHAIN",
+            "alternateName": "NOCK",
+            "description": "NOCKCHAIN cryptocurrency price tracking and valuation calculator"
+        }
+    }
+    </script>
 </body>
 </html>
