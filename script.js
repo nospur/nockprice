@@ -96,11 +96,6 @@ async function fetchMarketCaps() {
         }
 
         updateHypotheticalPrice();
-
-        if (data.lastUpdated) {
-            const updateTime = new Date(data.lastUpdated);
-            document.getElementById('updateTime').textContent = updateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        }
     } catch (error) {
         console.error('Error fetching market data:', error);
 
