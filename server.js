@@ -13,22 +13,22 @@ app.use(express.json());
 // Serve static files
 app.use(express.static('.'));
 
-// Cache data with fallback values
+// Cache data (no fallback values)
 let cachedData = {
     marketCaps: {
-        bitcoin: 2370000000000,
-        ethereum: 525000000000,
-        solana: 120000000000,
-        polkadot: 6300000000,
-        litecoin: 8900000000,
-        gold: 15800000000000
+        bitcoin: 0,
+        ethereum: 0,
+        solana: 0,
+        polkadot: 0,
+        litecoin: 0,
+        gold: 15800000000000 // Gold market cap is static
     },
     nock: {
-        price: 0.0171,
-        marketCap: 20870000,
-        circulatingSupply: 1220000000,
-        maxSupply: 4290000000,
-        priceChange24h: 2.5
+        price: 0,
+        marketCap: 0,
+        circulatingSupply: 0,
+        maxSupply: 0,
+        priceChange24h: 0
     },
     lastUpdated: null
 };
@@ -104,17 +104,7 @@ async function fetchMarketData() {
 
     } catch (error) {
         console.error('Error fetching market data:', error);
-
-        // Use fallback values if fetch fails
-        if (cachedData.marketCaps.bitcoin === 0) {
-            cachedData.marketCaps.bitcoin = 1350000000000;
-            cachedData.marketCaps.ethereum = 400000000000;
-            cachedData.marketCaps.solana = 100000000000;
-            cachedData.marketCaps.polkadot = 10000000000;
-            cachedData.marketCaps.litecoin = 5000000000;
-            cachedData.nock.price = 0.001;
-            cachedData.nock.circulatingSupply = 1000000000;
-        }
+        // Keep existing cached data when fetch fails
     }
 }
 

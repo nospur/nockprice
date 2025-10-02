@@ -103,26 +103,13 @@ async function fetchMarketCaps() {
     } catch (error) {
         console.error('Error fetching market data:', error);
 
-        // Fallback values if backend is not running
-        marketCaps.bitcoin = 1350000000000;
-        marketCaps.ethereum = 400000000000;
-        marketCaps.solana = 100000000000;
-        marketCaps.polkadot = 10000000000;
-        marketCaps.litecoin = 5000000000;
-
-        currentNockPrice = 0.001;
-        circulatingSupply = 1000000000;
-
-        document.getElementById('currentPriceDisplay').textContent = formatPrice(currentNockPrice);
-
-        // Update ticker with fallback values
-        document.getElementById('tickerPrice').textContent = formatPrice(currentNockPrice);
-        document.getElementById('tickerMarketCap').textContent = 'Offline';
-        document.getElementById('tickerCirculating').textContent = formatSupply(circulatingSupply);
+        // Show error state when API is unavailable
+        document.getElementById('currentPriceDisplay').textContent = '—';
+        document.getElementById('tickerPrice').textContent = '—';
+        document.getElementById('tickerMarketCap').textContent = '—';
+        document.getElementById('tickerCirculating').textContent = '—';
         document.getElementById('tickerMaxSupply').textContent = '—';
         document.getElementById('ticker24hChange').textContent = '—';
-
-        updateHypotheticalPrice();
     }
 }
 
