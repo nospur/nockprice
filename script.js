@@ -57,8 +57,12 @@ const formatGains = (amount) => {
 
 async function fetchMarketCaps() {
     try {
-        // Fetch from our backend server
-        const response = await fetch('http://localhost:3000/api/market-data');
+        // Fetch from API endpoint (works with both local server and Netlify Functions)
+        const apiUrl = window.location.hostname === 'localhost'
+            ? 'http://localhost:3000/api/market-data'
+            : '/.netlify/functions/market-data';
+
+        const response = await fetch(apiUrl);
         const data = await response.json();
 
         // Update market caps
