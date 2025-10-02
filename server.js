@@ -13,21 +13,22 @@ app.use(express.json());
 // Serve static files
 app.use(express.static('.'));
 
-// Cache data
+// Cache data with fallback values
 let cachedData = {
     marketCaps: {
-        bitcoin: 0,
-        ethereum: 0,
-        solana: 0,
-        polkadot: 0,
-        litecoin: 0,
+        bitcoin: 2370000000000,
+        ethereum: 525000000000,
+        solana: 120000000000,
+        polkadot: 6300000000,
+        litecoin: 8900000000,
         gold: 15800000000000
     },
     nock: {
-        price: 0,
-        marketCap: 0,
-        circulatingSupply: 0,
-        maxSupply: 0
+        price: 0.0171,
+        marketCap: 20870000,
+        circulatingSupply: 1220000000,
+        maxSupply: 4290000000,
+        priceChange24h: 2.5
     },
     lastUpdated: null
 };
@@ -39,9 +40,15 @@ async function fetchMarketData() {
 
         // Fetch crypto market caps
         const cryptoResponse = await fetch(
-            'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,polkadot,litecoin&vs_currencies=usd&include_market_cap=true'
+            'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,polkadot,litecoin&vs_currencies=usd&include_market_cap=true&include_24hr_change=true'
         );
         const cryptoData = await cryptoResponse.json();
+
+        // Check for rate limit error
+        if (cryptoData.status && cryptoData.status.error_code === 429) {
+            console.log('Rate limited by CoinGecko API. Using cached data.');
+            return;
+        }
 
         if (cryptoData.bitcoin) {
             cachedData.marketCaps.bitcoin = cryptoData.bitcoin.usd_market_cap || 0;
@@ -63,19 +70,27 @@ async function fetchMarketData() {
                 cachedData.nock.marketCap = nockData.market_data.market_cap?.usd || 0;
                 cachedData.nock.circulatingSupply = nockData.market_data.circulating_supply || 0;
                 cachedData.nock.maxSupply = nockData.market_data.max_supply || nockData.market_data.total_supply || 0;
+                cachedData.nock.priceChange24h = nockData.market_data.price_change_percentage_24h || 0;
             }
         } catch (nockError) {
             console.log('Error fetching NOCK data, trying simple endpoint...');
 
             // Try simpler endpoint
             const nockSimple = await fetch(
-                'https://api.coingecko.com/api/v3/simple/price?ids=nockchain&vs_currencies=usd&include_market_cap=true'
+                'https://api.coingecko.com/api/v3/simple/price?ids=nockchain&vs_currencies=usd&include_market_cap=true&include_24hr_change=true'
             );
             const nockSimpleData = await nockSimple.json();
+
+            // Check for rate limit error
+            if (nockSimpleData.status && nockSimpleData.status.error_code === 429) {
+                console.log('Rate limited on NOCK data. Using cached data.');
+                return;
+            }
 
             if (nockSimpleData && nockSimpleData.nockchain) {
                 cachedData.nock.price = nockSimpleData.nockchain.usd || 0;
                 cachedData.nock.marketCap = nockSimpleData.nockchain.usd_market_cap || 0;
+                cachedData.nock.priceChange24h = nockSimpleData.nockchain.usd_24h_change || 0;
 
                 // Estimate supply if we have price and market cap
                 if (cachedData.nock.marketCap && cachedData.nock.price) {
@@ -116,8 +131,8 @@ app.get('/', (req, res) => {
 // Initial fetch
 fetchMarketData();
 
-// Update data every 60 seconds
-setInterval(fetchMarketData, 60000);
+// Update data every 5 minutes to avoid rate limits
+setInterval(fetchMarketData, 300000);
 
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);

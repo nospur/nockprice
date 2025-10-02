@@ -27,6 +27,7 @@ body {
     height: 100vh;
     overflow: hidden;
     position: relative;
+    padding-top: 36px; /* Space for ticker bar */
 }
 
 /* Background gradient orbs */
@@ -59,6 +60,77 @@ body::before {
     height: 100vh;
     display: flex;
     flex-direction: column;
+}
+
+/* Ticker Bar */
+.ticker-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 36px;
+    background: var(--bg-dark);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.ticker-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ticker-label {
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+.ticker-value {
+    font-size: 13px;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.ticker-change {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-variant-numeric: tabular-nums;
+}
+
+.ticker-change.positive {
+    color: var(--accent-neon);
+    background: rgba(0, 255, 136, 0.1);
+}
+
+.ticker-change.negative {
+    color: #ff4444;
+    background: rgba(255, 68, 68, 0.1);
+}
+
+.ticker-separator {
+    width: 1px;
+    height: 20px;
+    background: var(--border);
+    opacity: 0.5;
 }
 
 /* Hero */
@@ -321,48 +393,6 @@ body::before {
     letter-spacing: 0.05em;
 }
 
-/* Stats Section */
-.stats-section {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(20, 20, 20, 0.8);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    padding: 12px;
-    width: 140px;
-    z-index: 10;
-}
-
-.stats-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.stat-item {
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-
-.stat-label {
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-dim);
-    opacity: 0.6;
-}
-
-.stat-value {
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--text-muted);
-    font-variant-numeric: tabular-nums;
-}
 
 /* Footer */
 .footer {

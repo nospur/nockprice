@@ -7,6 +7,32 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Ticker Bar -->
+    <div class="ticker-bar">
+        <div class="ticker-content">
+            <div class="ticker-item">
+                <span class="ticker-label">NOCK</span>
+                <span class="ticker-value" id="tickerPrice">—</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-change" id="ticker24hChange">—</span>
+            </div>
+            <div class="ticker-separator"></div>
+            <div class="ticker-item">
+                <span class="ticker-label">Market Cap</span>
+                <span class="ticker-value" id="tickerMarketCap">—</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-label">Circulating</span>
+                <span class="ticker-value" id="tickerCirculating">—</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-label">Max Supply</span>
+                <span class="ticker-value" id="tickerMaxSupply">—</span>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <!-- Hero -->
         <header class="hero">
@@ -86,27 +112,6 @@
             <label for="userNocks" class="input-hint">How much NOCK do you hold?</label>
         </div>
 
-        <!-- NOCK Stats -->
-        <div class="stats-section">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-label">Market Cap</span>
-                    <span class="stat-value" id="currentMarketCap">—</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Circulating Supply</span>
-                    <span class="stat-value" id="circulatingSupply">—</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Max Supply</span>
-                    <span class="stat-value" id="maxSupply">—</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Last Updated</span>
-                    <span class="stat-value" id="updateTime">—</span>
-                </div>
-            </div>
-        </div>
 
         <!-- Footer -->
         <footer class="footer">

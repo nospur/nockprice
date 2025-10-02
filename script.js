@@ -12,6 +12,7 @@ let currentNockMarketCap = 0;
 let circulatingSupply = 0;
 let maxSupply = 0;
 let selectedMarketCap = 'bitcoin';
+let price24hChange = 0;
 
 const formatNumber = (num) => {
     if (!num || num === 0) return '—';
@@ -68,12 +69,26 @@ async function fetchMarketCaps() {
         currentNockMarketCap = data.nock.marketCap || 0;
         circulatingSupply = data.nock.circulatingSupply || 0;
         maxSupply = data.nock.maxSupply || 0;
+        price24hChange = data.nock.priceChange24h || 0;
 
-        // Update display
+        // Update main display
         document.getElementById('currentPriceDisplay').textContent = formatPrice(currentNockPrice);
-        document.getElementById('currentMarketCap').textContent = formatNumber(currentNockMarketCap);
-        document.getElementById('circulatingSupply').textContent = formatSupply(circulatingSupply);
-        document.getElementById('maxSupply').textContent = formatSupply(maxSupply);
+
+        // Update ticker bar
+        document.getElementById('tickerPrice').textContent = formatPrice(currentNockPrice);
+        document.getElementById('tickerMarketCap').textContent = formatNumber(currentNockMarketCap);
+        document.getElementById('tickerCirculating').textContent = formatSupply(circulatingSupply);
+        document.getElementById('tickerMaxSupply').textContent = formatSupply(maxSupply);
+
+        // Update 24h change
+        const changeElement = document.getElementById('ticker24hChange');
+        if (price24hChange !== 0) {
+            changeElement.textContent = `${price24hChange >= 0 ? '+' : ''}${price24hChange.toFixed(2)}%`;
+            changeElement.className = `ticker-change ${price24hChange >= 0 ? 'positive' : 'negative'}`;
+        } else {
+            changeElement.textContent = '0.00%';
+            changeElement.className = 'ticker-change';
+        }
 
         updateHypotheticalPrice();
 
@@ -95,9 +110,13 @@ async function fetchMarketCaps() {
         circulatingSupply = 1000000000;
 
         document.getElementById('currentPriceDisplay').textContent = formatPrice(currentNockPrice);
-        document.getElementById('circulatingSupply').textContent = formatSupply(circulatingSupply);
-        document.getElementById('currentMarketCap').textContent = 'Backend offline';
-        document.getElementById('updateTime').textContent = 'Offline';
+
+        // Update ticker with fallback values
+        document.getElementById('tickerPrice').textContent = formatPrice(currentNockPrice);
+        document.getElementById('tickerMarketCap').textContent = 'Offline';
+        document.getElementById('tickerCirculating').textContent = formatSupply(circulatingSupply);
+        document.getElementById('tickerMaxSupply').textContent = '—';
+        document.getElementById('ticker24hChange').textContent = '—';
 
         updateHypotheticalPrice();
     }
@@ -171,5 +190,5 @@ document.getElementById('userNocks').addEventListener('input', calculatePortfoli
 // Initial load
 fetchMarketCaps();
 
-// Update every 60 seconds
-setInterval(fetchMarketCaps, 60000);
+// Update every 5 minutes (matching server update interval)
+setInterval(fetchMarketCaps, 300000);
