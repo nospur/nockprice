@@ -141,9 +141,12 @@ body::before {
 }
 
 .hero-title {
-    font-size: clamp(32px, 5vw, 48px);
+    font-family: "windsor", "Archivo Black", "Arial Black", sans-serif;
+    font-size: clamp(36px, 6vw, 56px);
     font-weight: 900;
-    letter-spacing: -0.03em;
+    font-style: normal;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
     background: linear-gradient(135deg, #ffffff 0%, #999999 50%, #ffffff 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
