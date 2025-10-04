@@ -400,6 +400,53 @@ body::before {
 }
 
 
+/* FAQ Section */
+.faq-section {
+    max-width: 800px;
+    margin: 32px auto;
+    padding: 0 16px;
+}
+
+.faq-title {
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+}
+
+.faq-item {
+    margin-bottom: 20px;
+    padding: 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    border-color: var(--border-hover);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.faq-question {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.faq-answer {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+.faq-answer p {
+    margin: 0;
+}
+
 /* Footer */
 .footer {
     text-align: center;
@@ -410,6 +457,10 @@ body::before {
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.05em;
+}
+
+.footer p {
+    margin: 4px 0;
 }
 
 /* Laptop/Desktop Responsive */
@@ -458,21 +509,62 @@ body::before {
         height: auto;
         min-height: 100vh;
         overflow-y: auto;
+        padding-top: 44px; /* Increased padding for mobile safe area */
     }
 
     .container {
         height: auto;
-        min-height: 100vh;
+        min-height: calc(100vh - 44px);
         padding: 12px;
+        padding-bottom: env(safe-area-inset-bottom, 20px); /* Account for iPhone notch/home indicator */
+    }
+
+    /* Fix ticker bar for mobile with safe area */
+    .ticker-bar {
+        top: 0;
+        padding-top: env(safe-area-inset-top, 0); /* Account for iPhone notch */
+        height: auto;
+        min-height: 44px; /* Larger touch target for mobile */
+        padding-left: env(safe-area-inset-left, 12px);
+        padding-right: env(safe-area-inset-right, 12px);
+    }
+
+    .ticker-content {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        gap: 12px;
+        padding: 8px 0;
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        scrollbar-width: none; /* Hide scrollbar Firefox */
+    }
+
+    .ticker-content::-webkit-scrollbar {
+        display: none; /* Hide scrollbar Chrome/Safari */
+    }
+
+    .ticker-item {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+
+    .ticker-separator {
+        flex-shrink: 0;
+    }
+
+    .hero {
+        padding: 8px 0 16px;
     }
 
     .hero-title {
-        font-size: 40px;
+        font-size: clamp(32px, 10vw, 40px);
+        line-height: 1.1;
     }
 
     .comparison-section {
         grid-template-columns: 1fr;
-        gap: 16px;
+        gap: 12px;
+        margin-bottom: 16px;
     }
 
     .vs-divider {
@@ -487,6 +579,7 @@ body::before {
 
     .price-column {
         padding: 16px;
+        min-height: auto;
     }
 
     .price-main {
@@ -499,7 +592,40 @@ body::before {
 
     .nock-input {
         font-size: 16px;
-        padding: 10px;
+        padding: 12px;
+        min-height: 48px; /* Better touch target */
+        -webkit-appearance: none; /* Remove iOS styling */
+    }
+
+    /* Improve touch targets for mobile */
+    .market-cap-selector {
+        min-height: 44px;
+        font-size: 16px; /* Prevent zoom on iOS */
+        padding: 10px 16px;
+    }
+
+    /* FAQ Section mobile optimization */
+    .faq-section {
+        margin: 24px auto;
+        padding: 0 8px;
+    }
+
+    .faq-title {
+        font-size: 20px;
+        margin-bottom: 16px;
+    }
+
+    .faq-item {
+        padding: 16px;
+        margin-bottom: 12px;
+    }
+
+    .faq-question {
+        font-size: 15px;
+    }
+
+    .faq-answer {
+        font-size: 13px;
     }
 
     .stats-section {
@@ -512,8 +638,49 @@ body::before {
     }
 }
 
+/* Small mobile devices */
 @media (max-width: 480px) {
+    body {
+        padding-top: 40px;
+    }
+
+    .ticker-bar {
+        min-height: 40px;
+    }
+
+    .ticker-label {
+        font-size: 10px;
+    }
+
+    .ticker-value {
+        font-size: 12px;
+    }
+
     .hero-title {
-        font-size: 32px;
+        font-size: clamp(28px, 9vw, 36px);
+    }
+
+    .selector-label {
+        display: block;
+        margin-bottom: 8px;
+        margin-right: 0;
+    }
+
+    .price-main {
+        font-size: clamp(20px, 6vw, 24px);
+    }
+
+    .multiplier-badge {
+        font-size: 11px;
+        padding: 4px 12px;
+    }
+
+    /* Stack footer on small screens */
+    .footer {
+        padding: 12px 8px;
+    }
+
+    .footer p {
+        font-size: 9px;
     }
 }

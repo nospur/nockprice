@@ -1,0 +1,23 @@
+# Robots.txt for NockPrice.com
+# Allow all crawlers to access the site
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /node_modules/
+
+# Sitemap location
+Sitemap: https://nockprice.com/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Google specific
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bing specific
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0

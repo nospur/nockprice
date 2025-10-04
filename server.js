@@ -2,16 +2,36 @@ const express = require('express');
 const cors = require('cors');
 const fetch = require('node-fetch');
 const path = require('path');
+const compression = require('compression');
 
 const app = express();
 const PORT = 3000;
+
+// Enable compression
+app.use(compression());
 
 // Enable CORS
 app.use(cors());
 app.use(express.json());
 
-// Serve static files
-app.use(express.static('.'));
+// Serve static files with caching headers
+app.use(express.static('.', {
+    maxAge: '1h',  // Cache static files for 1 hour
+    setHeaders: (res, path) => {
+        // Set cache headers for different file types
+        if (path.endsWith('.html')) {
+            res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+        } else if (path.endsWith('.css') || path.endsWith('.js')) {
+            res.setHeader('Cache-Control', 'public, max-age=3600'); // 1 hour
+        } else if (path.endsWith('.json')) {
+            res.setHeader('Cache-Control', 'public, max-age=300'); // 5 minutes
+        }
+        // Add security headers
+        res.setHeader('X-Content-Type-Options', 'nosniff');
+        res.setHeader('X-Frame-Options', 'DENY');
+        res.setHeader('X-XSS-Protection', '1; mode=block');
+    }
+}));
 
 // Cache data (no fallback values)
 let cachedData = {
@@ -110,6 +130,8 @@ async function fetchMarketData() {
 
 // API endpoint to get market data
 app.get('/api/market-data', (req, res) => {
+    // Set CORS and cache headers for API
+    res.setHeader('Cache-Control', 'public, max-age=60'); // Cache API responses for 1 minute
     res.json(cachedData);
 });
 
