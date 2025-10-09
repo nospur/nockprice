@@ -4,6 +4,9 @@ let marketCaps = {
     solana: 0,
     polkadot: 0,
     litecoin: 0,
+    zcash: 0,
+    bittensor: 0,
+    kaspa: 0,
     gold: 15800000000000
 };
 
@@ -120,6 +123,9 @@ function updateHypotheticalPrice() {
         solana: "Solana's",
         polkadot: "Polkadot's",
         litecoin: "Litecoin's",
+        zcash: "Zcash's",
+        bittensor: "Bittensor's",
+        kaspa: "Kaspa's",
         gold: "Gold's"
     };
 

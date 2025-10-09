@@ -9,6 +9,9 @@ let cachedData = {
         solana: 0,
         polkadot: 0,
         litecoin: 0,
+        zcash: 0,
+        bittensor: 0,
+        kaspa: 0,
         gold: 15800000000000 // Gold market cap is static
     },
     nock: {
@@ -30,7 +33,7 @@ async function fetchMarketData() {
 
         // Fetch crypto market caps
         const cryptoResponse = await fetch(
-            'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,polkadot,litecoin&vs_currencies=usd&include_market_cap=true&include_24hr_change=true'
+            'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,polkadot,litecoin,zcash,bittensor,kaspa&vs_currencies=usd&include_market_cap=true&include_24hr_change=true'
         );
         const cryptoData = await cryptoResponse.json();
 
@@ -46,6 +49,9 @@ async function fetchMarketData() {
             cachedData.marketCaps.solana = cryptoData.solana.usd_market_cap || 0;
             cachedData.marketCaps.polkadot = cryptoData.polkadot.usd_market_cap || 0;
             cachedData.marketCaps.litecoin = cryptoData.litecoin.usd_market_cap || 0;
+            cachedData.marketCaps.zcash = cryptoData.zcash?.usd_market_cap || 0;
+            cachedData.marketCaps.bittensor = cryptoData.bittensor?.usd_market_cap || 0;
+            cachedData.marketCaps.kaspa = cryptoData.kaspa?.usd_market_cap || 0;
         }
 
         // Fetch NOCK data
