@@ -1,9 +1,6 @@
 let marketCaps = {
     bitcoin: 0,
     ethereum: 0,
-    solana: 0,
-    polkadot: 0,
-    litecoin: 0,
     zcash: 0,
     bittensor: 0,
     kaspa: 0,
@@ -113,16 +110,13 @@ async function fetchMarketCaps() {
 }
 
 function updateHypotheticalPrice() {
-    const supply = maxSupply || circulatingSupply || 1000000000;
+    const supply = circulatingSupply || maxSupply || 1000000000;
     const selectedCap = marketCaps[selectedMarketCap];
 
     // Update asset name and market cap display
     const assetNames = {
         bitcoin: "Bitcoin's",
         ethereum: "Ethereum's",
-        solana: "Solana's",
-        polkadot: "Polkadot's",
-        litecoin: "Litecoin's",
         zcash: "Zcash's",
         bittensor: "Bittensor's",
         kaspa: "Kaspa's",
@@ -147,7 +141,7 @@ function updateHypotheticalPrice() {
 
 function calculatePortfolio() {
     const userNocks = parseFloat(document.getElementById('userNocks').value) || 0;
-    const supply = maxSupply || circulatingSupply || 1000000000;
+    const supply = circulatingSupply || maxSupply || 1000000000;
     const selectedCap = marketCaps[selectedMarketCap];
 
     const currentPortfolioBox = document.getElementById('currentPortfolioBox');
