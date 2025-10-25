@@ -1,6 +1,7 @@
 let marketCaps = {
     bitcoin: 0,
     ethereum: 0,
+    solana: 0,
     zcash: 0,
     bittensor: 0,
     kaspa: 0,
@@ -117,6 +118,7 @@ function updateHypotheticalPrice() {
     const assetNames = {
         bitcoin: "Bitcoin's",
         ethereum: "Ethereum's",
+        solana: "Solana's",
         zcash: "Zcash's",
         bittensor: "Bittensor's",
         kaspa: "Kaspa's",

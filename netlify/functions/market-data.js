@@ -4,8 +4,6 @@ let cachedData = {
         bitcoin: 0,
         ethereum: 0,
         solana: 0,
-        polkadot: 0,
-        litecoin: 0,
         zcash: 0,
         bittensor: 0,
         kaspa: 0,
@@ -31,7 +29,7 @@ async function fetchMarketData() {
 
         // Fetch crypto market caps
         const cryptoResponse = await fetch(
-            'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,polkadot,litecoin,zcash,bittensor,kaspa&vs_currencies=usd&include_market_cap=true&include_24hr_change=true'
+            'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,zcash,bittensor,kaspa&vs_currencies=usd&include_market_cap=true&include_24hr_change=true'
         );
         const cryptoData = await cryptoResponse.json();
 
@@ -45,8 +43,6 @@ async function fetchMarketData() {
             cachedData.marketCaps.bitcoin = cryptoData.bitcoin.usd_market_cap || cachedData.marketCaps.bitcoin;
             cachedData.marketCaps.ethereum = cryptoData.ethereum.usd_market_cap || cachedData.marketCaps.ethereum;
             cachedData.marketCaps.solana = cryptoData.solana.usd_market_cap || cachedData.marketCaps.solana;
-            cachedData.marketCaps.polkadot = cryptoData.polkadot.usd_market_cap || cachedData.marketCaps.polkadot;
-            cachedData.marketCaps.litecoin = cryptoData.litecoin.usd_market_cap || cachedData.marketCaps.litecoin;
             cachedData.marketCaps.zcash = cryptoData.zcash?.usd_market_cap || cachedData.marketCaps.zcash;
             cachedData.marketCaps.bittensor = cryptoData.bittensor?.usd_market_cap || cachedData.marketCaps.bittensor;
             cachedData.marketCaps.kaspa = cryptoData.kaspa?.usd_market_cap || cachedData.marketCaps.kaspa;
